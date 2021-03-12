@@ -9,6 +9,7 @@ import './App.css';
 import { Layout } from 'antd';
 import Top from './components/Top';
 import Favorites from './components/Favorites';
+import Results from './components/Results';
 
 const { Content } = Layout;
 
@@ -23,6 +24,9 @@ const App = () => {
             </Route>
             <Route exact path='/favorites'>
               <Favorites />
+            </Route>
+            <Route exact path='/results'>
+              <Results />
             </Route>
             <Redirect to='/' />
           </Switch>

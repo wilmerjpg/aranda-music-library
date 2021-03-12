@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import * as api from './api';
+import React, { useState } from 'react';
+import getArtists from './api';
 import Layout from '../Layout';
 
 const Top = () => {
@@ -11,18 +11,13 @@ const Top = () => {
       page_size: 12,
     };
 
-    const { data = {} } = await api.getArtistTop(params);
+    const { data = {} } = await getArtists(params);
     setArtisTop(data.message?.body?.artist_list);
-
   };
-
-  useEffect(() => {
-    getArtistTop();
-  }, []);
 
   return (
     <div className='Top'>
-      <Layout title='Top 12 By Musicmatch' artists={artistTop} />
+      <Layout title='Top 12 By Musicmatch' artists={artistTop} handleGetResults={getArtistTop} />
     </div>
   );
 };
