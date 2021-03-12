@@ -1,21 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button } from 'antd';
 import { TwitterOutlined, StarOutlined, StarFilled, PlusCircleFilled } from '@ant-design/icons';
 import './styles.css';
+import * as utils from '../../../utils';
 
 const ArtistCard = props => {
   const [isFavorite, setIsFavorite] = useState(false);
   const {
-    artist: {
-      artist_country: artistCountry,
-      artist_name: artistName,
-      artist_twitter_url: artistTwitterUrl,
-      begin_date: beginDate,
-    },
+    artist = {},
   } = props;
 
+  const {
+    artist_id: artistId,
+    artist_country: artistCountry,
+    artist_name: artistName,
+    artist_twitter_url: artistTwitterUrl,
+    begin_date: beginDate,
+  } = artist;
+
+  useEffect(() => {
+    let currentFavorites = utils.getValueFromLocalStorage('favoritesArtists');
+    currentFavorites = Array.isArray(currentFavorites) ? currentFavorites : [];
+
+    const isFavoriteCurrentArtist = currentFavorites.find(cf => cf?.artist?.artist_id === artistId);
+    setIsFavorite(isFavoriteCurrentArtist);
+  }, []);
+
   const handleChangeFavorite = () => {
+    let currentFavorites = utils.getValueFromLocalStorage('favoritesArtists');
+    currentFavorites = Array.isArray(currentFavorites) ? currentFavorites : [];
+
+    if (isFavorite) {
+      currentFavorites = currentFavorites.filter(cf => cf.artist.artist_id !== artistId);
+    } else {
+      currentFavorites.push({ artist });
+    }
+
+    utils.setValueToLocalStorage('favoritesArtists', currentFavorites);
     setIsFavorite(!isFavorite);
   };
 
