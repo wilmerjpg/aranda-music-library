@@ -1,0 +1,15 @@
+.ArtistDetail__spinLoader {
+  margin: 0 auto;
+  display: block;
+}
+
+.ArtistDetail__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ArtistDetail__header > h2 {
+  margin-bottom: 0;
+  margin-right: 16px;
+}

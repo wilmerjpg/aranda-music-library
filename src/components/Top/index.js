@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import getArtists from './api';
 import Layout from '../Layout';
+import * as utils from '../../utils';
 
 const Top = () => {
   const [artistTop, setArtisTop] = useState([]);
@@ -12,7 +13,14 @@ const Top = () => {
     };
 
     const { data = {} } = await getArtists(params);
-    setArtisTop(data.message?.body?.artist_list);
+    const { success, body } = utils.manageResponse(data);
+
+    if (success) {
+      const result = body.artist_list || [];
+      setArtisTop(result);
+    } else {
+      throw new Error();
+    }
   };
 
   return (

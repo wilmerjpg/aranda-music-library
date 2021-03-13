@@ -6,10 +6,8 @@ const Favorites = () => {
   const [artists, setArtists] = useState([]);
 
   const getFavoritesArtists = () => {
-    let currentFavorites = utils.getValueFromLocalStorage('favoritesArtists');
-    currentFavorites = Array.isArray(currentFavorites) ? currentFavorites : [];
-
-    setArtists(currentFavorites);
+    const favorites = utils.getFavorites();
+    setArtists(favorites);
   };
 
   return (
