@@ -1,0 +1,21 @@
+.Layout__title {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+  text-decoration: underline;
+}
+
+.Layout__containerCards {
+  margin: 16px 0;
+}
+
+.Layout__favoriteButton {
+  padding: 0;
+}
+
+@media (max-width: 576px) {
+  .Layout__favoriteButton {
+    display: block;
+    margin: 0 auto;
+  }
+}

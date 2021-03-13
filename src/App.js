@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React from 'react';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import './App.css';
+import { Layout } from 'antd';
+import Top from './components/Top';
+import Favorites from './components/Favorites';
+import Results from './components/Results';
 
-function App() {
+const { Content } = Layout;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Content>
+          <Switch>
+            <Route exact path='/'>
+              <Top />
+            </Route>
+            <Route exact path='/favorites'>
+              <Favorites />
+            </Route>
+            <Route exact path='/results'>
+              <Results />
+            </Route>
+            <Redirect to='/' />
+          </Switch>
+        </Content>
+      </Layout>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
