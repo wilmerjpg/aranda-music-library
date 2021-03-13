@@ -22,6 +22,9 @@ REACT_APP_API_URL=https://cors-anywhere.herokuapp.com/https://api.musixmatch.com
 # API KEY Musixmatch
 REACT_APP_MM_KEY_=''
 ```
+
+Video demo: https://drive.google.com/file/d/1UOuXgsFdoRYgW6IepiO68hTO44X1aTIW/view?usp=sharing
+
 ## Available Scripts
 
 In the project directory, you can run:
